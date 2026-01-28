@@ -102,7 +102,6 @@
 
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -119,6 +118,25 @@ export const metadata: Metadata = {
   description:
     "Chinmaya Kumar Das is a Full-Stack Developer and SEO Expert specializing in Next.js, React, Node.js, and SEO-optimized web applications.",
 
+  keywords: [
+    "Chinmaya Kumar Das",
+    "Full Stack Developer",
+    "Next.js Developer",
+    "React Developer",
+    "SEO Expert",
+  ],
+
+  authors: [{ name: "Chinmaya Kumar Das" }],
+  creator: "Chinmaya Kumar Das",
+
+  openGraph: {
+    title: "Chinmaya Kumar Das | Full-Stack Developer & SEO Expert",
+    description: "Portfolio of Chinmaya Kumar Das",
+    url: "https://yourdomain.com",
+    siteName: "Chinmaya Kumar Das",
+    type: "website",
+  },
+
   verification: {
     google: "-E3d5lcWSRoF44sPMxEbcZJKgd468wBlpVquntc7dyg",
   },
@@ -133,28 +151,27 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics GA4 */}
-        <Script
+        <script
+          async
           src="https://www.googletagmanager.com/gtag/js?id=G-5DJS4H3VT4"
-          strategy="afterInteractive"
         />
 
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-        >
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
-            gtag('js', new Date());
-            gtag('config', 'G-5DJS4H3VT4', {
-              send_page_view: true,
-            });
-          `}
-        </Script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'G-5DJS4H3VT4');
+            `,
+          }}
+        />
       </head>
 
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
