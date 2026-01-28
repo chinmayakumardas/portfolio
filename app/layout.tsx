@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
-import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,30 +58,21 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Google Analytics GA4 */}
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-5DJS4H3VT4"
-        />
-        <Script id="ga4" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-5DJS4H3VT4', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
+       <Script
+  strategy="afterInteractive"
+  src="https://www.googletagmanager.com/gtag/js?id=G-5DJS4H3VT4"
+/>
+<Script id="ga4" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5DJS4H3VT4');
+  `}
+</Script>
+
 
         {/* Google Search Console Verification (add when you get code) */}
-        {/*
-        <meta
-          name="google-site-verification"
-          content="YOUR_VERIFICATION_CODE"
-        />
-        */}
-        
-      
        <meta name="google-site-verification" content="-E3d5lcWSRoF44sPMxEbcZJKgd468wBlpVquntc7dyg" />
       </head>
 
