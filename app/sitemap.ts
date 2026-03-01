@@ -1,34 +1,50 @@
-// export default function sitemap() {
-//   const baseUrl = "https://chinmayakumardas.com";
-
-//   return [
-//     {
-//       url: baseUrl,
-//       lastModified: new Date(),
-//     },
-//     {
-//       url: `${baseUrl}/projects`,
-//       lastModified: new Date(),
-//     },
-//     {
-//       url: `${baseUrl}/about`,
-//       lastModified: new Date(),
-//     },
-//     {
-//       url: `${baseUrl}/contact`,
-//       lastModified: new Date(),
-//     },
-//   ];
-// }
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://chinmayakumardas.com'
+
   return [
     {
-      url: "https://chinmayakumardas.com",
+      url: `${baseUrl}/`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: 'monthly',
       priority: 1,
     },
-  ];
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ]
 }

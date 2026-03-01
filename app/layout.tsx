@@ -14,13 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chinmaya Kumar Das | Full-Stack Developer & SEO Expert",
+  title: "Chinmaya Kumar Das | Full-Stack Developer ",
   description:
-    "Chinmaya Kumar Das is a Full-Stack Developer and SEO Expert specializing in Next.js, React, Node.js, and high-performance SEO-optimized web applications.",
+    "Chinmaya Kumar Das is a Full-Stack Developer specializing in Next.js, React, Node.js, and high-performance SEO-optimized web applications.",
   keywords: [
     "Chinmaya Kumar Das",
     "Full Stack Developer",
-    "SEO Expert",
     "Next.js Developer",
     "React Developer",
     "Web Developer Portfolio",
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Chinmaya Kumar Das | Full-Stack Developer & SEO Expert",
     description:
-      "Chinmaya Kumar Das, Full-Stack Developer & SEO Expert building fast and search-optimized web applications.",
+      "Chinmaya Kumar Das, Full-Stack Developer  building fast and search-optimized web applications.",
     url: "https://chinmayakumardas.com",
     siteName: "Chinmaya Kumar Das",
     locale: "en_US",
