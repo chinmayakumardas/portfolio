@@ -1,22 +1,44 @@
+
+
+
+
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { League_Spartan, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/* ===============================
+   FONT CONFIGURATION
+================================ */
+
+const leagueSpartan = League_Spartan({
   subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
+/* ===============================
+   METADATA (SEO OPTIMIZED)
+================================ */
+
 export const metadata: Metadata = {
-  title: "Chinmaya Kumar Das | Full-Stack Developer ",
+  metadataBase: new URL("https://chinmayakumardas.com"),
+
+  title: {
+    default: "Chinmaya Kumar Das | Full-Stack Developer",
+    template: "%s | Chinmaya Kumar Das",
+  },
+
   description:
     "Chinmaya Kumar Das is a Full-Stack Developer specializing in Next.js, React, Node.js, and high-performance SEO-optimized web applications.",
+
   keywords: [
     "Chinmaya Kumar Das",
     "Full Stack Developer",
@@ -24,19 +46,40 @@ export const metadata: Metadata = {
     "React Developer",
     "Web Developer Portfolio",
   ],
+
   authors: [{ name: "Chinmaya Kumar Das" }],
   creator: "Chinmaya Kumar Das",
 
   openGraph: {
-    title: "Chinmaya Kumar Das | Full-Stack Developer & SEO Expert",
+    title: "Chinmaya Kumar Das | Full-Stack Developer",
     description:
-      "Chinmaya Kumar Das, Full-Stack Developer  building fast and search-optimized web applications.",
-    url: "https://chinmayakumardas.com",
+      "Full-Stack Developer building fast and search-optimized web applications.",
+    url: "/",
     siteName: "Chinmaya Kumar Das",
     locale: "en_US",
     type: "website",
   },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Chinmaya Kumar Das | Full-Stack Developer",
+    description:
+      "Full-Stack Developer building fast and SEO-optimized web applications.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  verification: {
+    google: "-E3d5lcWSRoF44sPMxEbcZJKgd468wBlpVquntc7dyg",
+  },
 };
+
+/* ===============================
+   ROOT LAYOUT
+================================ */
 
 export default function RootLayout({
   children,
@@ -44,8 +87,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head>
+    <html
+      lang="en"
+      className={`${leagueSpartan.variable} ${geistMono.variable}`}
+    >
+      <body className="antialiased">
         {/* Google Analytics GA4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-5DJS4H3VT4"
@@ -56,20 +102,16 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-5DJS4H3VT4');
+            gtag('config', 'G-5DJS4H3VT4', {
+              page_path: window.location.pathname,
+            });
           `}
         </Script>
 
-        {/* Google Search Console */}
-        <meta
-          name="google-site-verification"
-          content="-E3d5lcWSRoF44sPMxEbcZJKgd468wBlpVquntc7dyg"
-        />
-      </head>
-
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
   );
 }
+
+

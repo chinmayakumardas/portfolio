@@ -8,7 +8,7 @@ export default function Home() {
         </h1>
 
         <h2 className="text-xl md:text-2xl text-gray-600 mb-6">
-          Full-Stack Developer & SEO Expert
+          Full-Stack Developer
         </h2>
 
         <p className="text-gray-500 text-lg mb-8">
