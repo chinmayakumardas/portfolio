@@ -1,30 +1,28 @@
-import { client } from "@/lib/sanity"
-import { postsQuery } from "@/queries/blog"
-import Link from "next/link"
-
-export default async function BlogPage() {
-
-  const posts = await client.fetch(postsQuery)
-
+export default function BlogPage() {
   return (
-    <main className="max-w-4xl mx-auto py-20">
+    <main className="min-h-screen p-20">
+      <h1 className="text-5xl font-bold mb-10">Blog</h1>
 
-      <h1 className="text-4xl font-bold mb-10">
-        Blog
-      </h1>
+      <div className="space-y-6">
+        <div className="border p-6 rounded">
+          <h2 className="text-2xl font-semibold">
+            Building Animated Websites with GSAP
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Learn how to create modern scroll animations with GSAP
+            and Next.js.
+          </p>
+        </div>
 
-      {posts.map((post:any) => (
-        <article key={post.slug.current}>
-
-          <Link href={`/blog/${post.slug.current}`}>
-            <h2 className="text-2xl font-semibold">
-              {post.title}
-            </h2>
-          </Link>
-
-        </article>
-      ))}
-
+        <div className="border p-6 rounded">
+          <h2 className="text-2xl font-semibold">
+            React Three Fiber for Web Experiences
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Adding interactive 3D elements to modern websites.
+          </p>
+        </div>
+      </div>
     </main>
-  )
+  );
 }
