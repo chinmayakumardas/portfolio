@@ -1,7 +1,3 @@
-
-
-
-
 // app/(main)/blog/page.tsx
 import { sanityClient } from '@/lib/sanityClient';
 import Image from 'next/image';
@@ -17,7 +13,7 @@ type Post = {
 
 // Fetch all posts with defined slugs
 async function getPosts(): Promise<Post[]> {
-  const posts = await sanityClient.fetch(`
+  const posts: Post[] = await sanityClient.fetch(`
     *[_type == "post" && defined(slug.current)]{
       _id,
       title,
@@ -33,8 +29,6 @@ async function getPosts(): Promise<Post[]> {
     } | order(publishedAt desc)
   `);
 
-
-
   return posts;
 }
 
@@ -45,7 +39,7 @@ export default async function BlogPage() {
     <div className="max-w-5xl mx-auto p-6">
       <h1 className="text-4xl font-bold mb-6">My Blog</h1>
       <div className="grid md:grid-cols-2 gap-6">
-        {posts.map((post) => (
+        {posts.map((post: Post) => (
           <Link
             key={post._id}
             href={`/blog/${post.slug.current}`}
@@ -81,7 +75,3 @@ export default async function BlogPage() {
     </div>
   );
 }
-
-
-
-
