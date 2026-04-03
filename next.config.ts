@@ -8,9 +8,15 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["deifkwefumgah.cloudfront.net"],
      remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io", // Sanity CDN
+        pathname: "/images/**",
+      },
     {
       protocol: "https",
       hostname: "cdn.shadcnstudio.com",
+      
     },
   ],
   },
