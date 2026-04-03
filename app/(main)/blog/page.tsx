@@ -33,12 +33,7 @@ async function getPosts(): Promise<Post[]> {
     } | order(publishedAt desc)
   `);
 
-  // Debug log each post
-  posts.forEach((post) => {
-    console.log('Post ID:', post._id);
-    console.log('Title:', post.title);
-    console.log('Image:', post.image);
-  });
+
 
   return posts;
 }
@@ -86,3 +81,7 @@ export default async function BlogPage() {
     </div>
   );
 }
+
+
+
+
