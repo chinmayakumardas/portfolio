@@ -1,7 +1,3 @@
-
-
-
-
 // app/(main)/blog/[slug]/page.tsx
 import { sanityClient } from '@/lib/sanityClient';
 import Image from 'next/image';
@@ -32,8 +28,8 @@ async function getPost(slug: string): Promise<Post | null> {
 }
 
 export default async function PostPage({ params }: Props) {
-  // ✅ Unwrap params as App Router now returns a Promise
-  const { slug } = await params;  
+  // ❌ Remove 'await' here
+  const { slug } = params;  
 
   if (!slug) return <p>⚠️ No slug provided!</p>;
 
