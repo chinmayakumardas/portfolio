@@ -2,7 +2,6 @@
 
 
 
-
 // app/(main)/blog/page.tsx
 import { sanityClient } from '@/lib/sanityClient';
 import Image from 'next/image';
@@ -12,21 +11,36 @@ type Post = {
   _id: string;
   title: string;
   slug: { current: string };
-  mainImage?: { asset: { url: string }; alt?: string };
+  image?: { asset?: { url?: string }; alt?: string } | null;
   publishedAt: string;
 };
 
 // Fetch all posts with defined slugs
 async function getPosts(): Promise<Post[]> {
-  return sanityClient.fetch(`
+  const posts = await sanityClient.fetch(`
     *[_type == "post" && defined(slug.current)]{
       _id,
       title,
       slug,
-      mainImage{asset->{url}, alt},
+      image{
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
       publishedAt
     } | order(publishedAt desc)
   `);
+
+  // Debug log each post
+  posts.forEach((post) => {
+    console.log('Post ID:', post._id);
+    console.log('Title:', post.title);
+    console.log('Image:', post.image);
+  });
+
+  return posts;
 }
 
 export default async function BlogPage() {
@@ -39,13 +53,21 @@ export default async function BlogPage() {
         {posts.map((post) => (
           <Link
             key={post._id}
-            href={`/blog/${post.slug.current}`} // Dynamic slug link
+            href={`/blog/${post.slug.current}`}
             className="border rounded-lg overflow-hidden hover:shadow-lg transition"
           >
-            {post.mainImage?.asset?.url && (
+            {post.image?.asset?.url ? (
               <Image
-                src={post.mainImage.asset.url}
-                alt={post.mainImage.alt || 'Blog Image'}
+                src={post.image.asset.url}
+                alt={post.image.alt || 'Blog Image'}
+                width={600}
+                height={300}
+                className="object-cover w-full h-48"
+              />
+            ) : (
+              <Image
+                src="/placeholder.jpg"
+                alt="Placeholder Image"
                 width={600}
                 height={300}
                 className="object-cover w-full h-48"
