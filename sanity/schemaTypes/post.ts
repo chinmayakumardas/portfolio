@@ -1,4 +1,10 @@
-import {defineField, defineType} from 'sanity'
+
+
+
+
+
+
+import { defineType, defineField } from 'sanity'
 
 export const post = defineType({
   name: 'post',
@@ -6,41 +12,89 @@ export const post = defineType({
   type: 'document',
 
   fields: [
+    // ✅ Title
     defineField({
       name: 'title',
-      title: 'Title',
       type: 'string',
       validation: Rule => Rule.required()
     }),
 
+    // ✅ Slug
     defineField({
       name: 'slug',
-      title: 'Slug',
       type: 'slug',
-      options: {
-        source: 'title',
-      },
+      options: { source: 'title' },
       validation: Rule => Rule.required()
     }),
 
+    // ✅ Thumbnail
     defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Thumbnail',
       type: 'image',
       options: { hotspot: true }
     }),
 
+    // ✅ Author
+    defineField({
+      name: 'author',
+      type: 'reference',
+      to: [{ type: 'author' }]
+    }),
+
+    // ✅ Categories
+    defineField({
+      name: 'categories',
+      type: 'array',
+      of: [{ type: 'reference', to: { type: 'category' } }]
+    }),
+
+    // ✅ Excerpt
+    defineField({
+      name: 'excerpt',
+      type: 'text',
+      rows: 3
+    }),
+
+    // ✅ Published Date
     defineField({
       name: 'publishedAt',
-      title: 'Published At',
       type: 'datetime'
     }),
 
+    // ✅ Featured
+    defineField({
+      name: 'featured',
+      type: 'boolean',
+      initialValue: false
+    }),
+
+    // ✅ SEO
+    defineField({
+      name: 'seo',
+      type: 'object',
+      fields: [
+        { name: 'metaTitle', type: 'string' },
+        { name: 'metaDescription', type: 'text' }
+      ]
+    }),
+
+    // ✅ Content
     defineField({
       name: 'body',
-      title: 'Content',
       type: 'array',
-      of: [{ type: 'block' }]
-    }),
+      of: [
+        { type: 'block' },
+        { type: 'image' },
+        { type: 'code' }
+      ]
+    })
   ],
+
+  preview: {
+    select: {
+      title: 'title',
+      media: 'image'
+    }
+  }
 })
