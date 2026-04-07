@@ -1,14 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
 "use client";
 
 import Link from "next/link";
@@ -27,37 +18,50 @@ export default function Header() {
     { name: "ABOUT ME", href: "/about" },
   ];
 
+  // ✅ Active route logic (handles nested routes)
+  const isActiveRoute = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
+
   return (
-    <header className="w-full bg-black sticky top-0 z-50 ">
+    <header className="w-full bg-black sticky top-0 z-50">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 py-1">
         <div className="flex items-center justify-between relative">
           
-          {/* Left - Logo */}
+          {/* Logo */}
           <Link href="/" className="text-[28px] font-bold tracking-[-1px] text-white">
             CHINMAYA .
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-10 text-sm font-medium tracking-wide absolute left-1/2 -translate-x-1/2">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`transition-all duration-200 
-                  ${pathname === item.href 
-                    ? "text-[#22C55E] font-semibold" 
-                    : "text-white/75 hover:text-[#22C55E]"
+            {navItems.map((item) => {
+              const isActive = isActiveRoute(item.href);
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`transition-all duration-200 ${
+                    isActive
+                      ? "text-[#22C55E] font-semibold"
+                      : "text-white/75 hover:text-[#22C55E]"
                   }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Right Side - Button + Mobile Menu */}
+          {/* Right Side */}
           <div className="flex items-center gap-4">
-            {/* Smaller Button */}
-            <a
+            
+            {/* Button */}
+            <Link
               href="/contact"
               className="hidden md:flex items-center gap-2 
                          bg-[#22C55E] hover:bg-[#16A34A] active:scale-95 
@@ -68,7 +72,7 @@ export default function Header() {
             >
               LET’S TALK
               <Pencil className="w-4 h-4" />
-            </a>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
@@ -81,7 +85,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Border Bottom */}
+      {/* Bottom Border */}
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
         <div className="border-b border-white/30" />
       </div>
@@ -90,19 +94,28 @@ export default function Header() {
       {open && (
         <div className="md:hidden bg-black border-t border-white/10">
           <div className="px-6 py-8 flex flex-col gap-6 text-lg font-medium">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`${
-                  pathname === item.href ? "text-[#22C55E] font-semibold" : "text-white/75"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <a
+            
+            {navItems.map((item) => {
+              const isActive = isActiveRoute(item.href);
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={`${
+                    isActive
+                      ? "text-[#22C55E] font-semibold"
+                      : "text-white/75"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            {/* Mobile Button */}
+            <Link
               href="/contact"
               onClick={() => setOpen(false)}
               className="mt-6 flex items-center justify-center gap-2 
@@ -112,23 +125,11 @@ export default function Header() {
             >
               LET’S TALK
               <Pencil className="w-4 h-4" />
-            </a>
+            </Link>
+
           </div>
         </div>
       )}
     </header>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

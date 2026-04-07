@@ -1,12 +1,14 @@
 
 
 
+
+
 // Footer.tsx
-import React from "react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" text-white font-sans border-t border-white/10">
+    <footer className="text-white font-sans border-t border-white/25">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 py-16">
         
         <div className="flex flex-col lg:flex-row justify-between gap-16 lg:gap-24">
@@ -21,7 +23,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Right Side - Services + Quick Links + Location */}
+          {/* Right Side */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-16 gap-y-12 lg:gap-x-20">
             
             {/* Services */}
@@ -30,11 +32,11 @@ const Footer = () => {
                 Services
               </p>
               <div className="flex flex-col gap-3 text-sm">
-                <a href="#services" className="hover:text-white hover:translate-x-1 transition-all duration-300">Website Design</a>
-                <a href="#services" className="hover:text-white hover:translate-x-1 transition-all duration-300">Web Development</a>
-                <a href="#services" className="hover:text-white hover:translate-x-1 transition-all duration-300">SaaS Development</a>
-                <a href="#services" className="hover:text-white hover:translate-x-1 transition-all duration-300">UI/UX Design</a>
-                <a href="#services" className="hover:text-white hover:translate-x-1 transition-all duration-300">Freelance Projects</a>
+                <Link href="/services" className="hover:text-white hover:translate-x-1 transition-all duration-300">Website Design</Link>
+                <Link href="/services" className="hover:text-white hover:translate-x-1 transition-all duration-300">Web Development</Link>
+                <Link href="/services" className="hover:text-white hover:translate-x-1 transition-all duration-300">SaaS Development</Link>
+                <Link href="/services" className="hover:text-white hover:translate-x-1 transition-all duration-300">UI/UX Design</Link>
+                <Link href="/services" className="hover:text-white hover:translate-x-1 transition-all duration-300">Landing Page</Link>
               </div>
             </div>
 
@@ -44,15 +46,15 @@ const Footer = () => {
                 Quick Links
               </p>
               <div className="flex flex-col gap-3 text-sm">
-                <a href="#about" className="hover:text-white hover:translate-x-1 transition-all duration-300">About Me</a>
-                <a href="#projects" className="hover:text-white hover:translate-x-1 transition-all duration-300">Projects</a>
-                <a href="#lab" className="hover:text-white hover:translate-x-1 transition-all duration-300">Lab / Experiments</a>
-                <a href="#blog" className="hover:text-white hover:translate-x-1 transition-all duration-300">Blog</a>
-                <a href="#contact" className="hover:text-white hover:translate-x-1 transition-all duration-300">Contact</a>
+                <Link href="/about" className="hover:text-white hover:translate-x-1 transition-all duration-300">About Me</Link>
+                <Link href="/projects" className="hover:text-white hover:translate-x-1 transition-all duration-300">Projects</Link>
+                <Link href="/lab" className="hover:text-white hover:translate-x-1 transition-all duration-300">Lab / Experiments</Link>
+                <Link href="/blog" className="hover:text-white hover:translate-x-1 transition-all duration-300">Blog</Link>
+                <Link href="/contact" className="hover:text-white hover:translate-x-1 transition-all duration-300">Contact</Link>
               </div>
             </div>
 
-            {/* Based In + Availability */}
+            {/* Location */}
             <div className="md:text-right">
               <p className="uppercase text-xs tracking-[3px] font-medium text-white/60 mb-6">
                 Based In
@@ -64,59 +66,74 @@ const Footer = () => {
 
               <div className="mt-10 flex items-center gap-2 md:justify-end">
                 <span className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_#4ade80]"></span>
-                <span className="text-sm text-white/70">Available for freelance work</span>
+                <span className="text-sm text-white/70">
+                  Available for freelance work
+                </span>
               </div>
 
-              <a
-                href="mailto:hello@chinmaya.dev"
+              <Link
+                href="mailto:chinmayakumardas07@gmail.com"
                 className="mt-6 block text-sm hover:text-white hover:translate-x-1 transition-all duration-300 md:text-right"
               >
-                hello@chinmaya.dev
-              </a>
+                chinmayakumardas07@gmail.com
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar - Social + Copyright */}
+        {/* Bottom Bar */}
         <div className="mt-20 pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
           
-          {/* Social Section - Like Reference Image */}
+          {/* Social */}
           <div>
             <p className="uppercase text-xs tracking-[3px] font-medium text-white/60 mb-4">
-              OUR SOCIAL:
+              SOCIAL:
             </p>
             <div className="flex flex-wrap gap-3">
-              <a 
-                href="#" 
+
+              <Link 
+                href="https://www.linkedin.com/in/chinmayakumardas2/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 border border-white/30 hover:border-white hover:bg-white hover:text-black rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 LINKEDIN
-              </a>
-              <a 
-                href="#" 
+              </Link>
+
+              <Link 
+                href="https://medium.com/@chinmayakumardas07"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 border border-white/30 hover:border-white hover:bg-white hover:text-black rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                INSTAGRAM
-              </a>
-              <a 
-                href="#" 
+                MEDIUM
+              </Link>
+
+              <Link 
+                href="https://github.com/chinmayakumardas"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 border border-white/30 hover:border-white hover:bg-white hover:text-black rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:scale-105 active:scale-95"
               >
-                DRIBBBLE
-              </a>
-              <a 
-                href="#" 
+                GITHUB
+              </Link>
+
+              <Link 
+                href="https://www.behance.net/chinmayakumar7"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 border border-white/30 hover:border-white hover:bg-white hover:text-black rounded-full text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:scale-105 active:scale-95"
               >
                 BEHANCE
-              </a>
+              </Link>
+
             </div>
           </div>
 
-          {/* Simplified Copyright */}
-          <p className="text-xs text-white/40 text-center md:text-right">
-            © 2026 Chinmaya • Bhubaneswar, India
-          </p>
+          {/* Copyright */}
+         <p className="text-xs text-white/40 text-center md:text-right">
+  © {new Date().getFullYear()} Chinamaya. All rights reserved.
+</p>
         </div>
       </div>
     </footer>
